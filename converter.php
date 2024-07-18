@@ -45,7 +45,7 @@ if ($currentQuestion) {
 $outputJson = json_encode($questions, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
 // Запись JSON в файл
-file_put_contents('output.json', $outputJson);
+file_put_contents('questions.json', $outputJson);
 
 echo "Преобразование завершено.\n";
 echo "Ощибок: .{$errors}\n";
