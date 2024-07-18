@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         question.answers.forEach(answer => {
             const label = document.createElement("label");
-            label.textContent = answer;
+            label.textContent = " "+answer;
 
             const radio = document.createElement("input");
             radio.type = "radio";
@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let correctCount = 0;
         let incorrectCount = 0;
 
+        console.log(questions);
         questions.forEach((question, index) => {
             const selectedAnswer = document.querySelector(`input[name="answer-${index}"]:checked`);
             const questionDiv = document.querySelectorAll(".question")[index];
@@ -81,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     document.getElementById("check-button").addEventListener("click", () => {
+        console.log(1);
         checkAnswers();
     });
 
