@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    let questions = [];
+
     function getRandomQuestions(questions, count) {
         const shuffled = questions.sort(() => 0.5 - Math.random());
         return shuffled.slice(0, count);
@@ -70,7 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
         result.textContent = `Правильных ответов: ${correctCount}, Неправильных ответов: ${incorrectCount}`;
     }
 
-    fetch('output.json')
+    document.getElementById("check-button").addEventListener("click", checkAnswers);
+
+    fetch('questions.json')
         .then(response => response.json())
         .then(data => {
             questions = getRandomQuestions(data, 100);
