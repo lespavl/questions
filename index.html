@@ -5,14 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вопросы</title>
     <style>
-        .correct { color: green; }
-        .incorrect { color: red; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .question {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fff;
+        }
+        .question p {
+            margin: 5px 0;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        #check-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #check-button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <div id="questions-container"></div>
-    <button id="check-button" onclick="checkAnswers()">Проверить</button>
-    <p id="result"></p>
-    <script src="script.js"></script>
+<div id="questions-container"></div>
+<button id="check-button" onclick="checkAnswers()">Проверить</button>
+<p id="result"></p>
+<script src="script.js"></script>
 </body>
 </html>

@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             } else {
                 incorrectCount++;
-                questionDiv.querySelector('form').classList.add("incorrect");
+                questionDiv.classList.add("incorrect");
                 const correctAnswer = Array.from(questionDiv.querySelectorAll('input')).find(input => input.value === question.correct);
                 correctAnswer.parentElement.classList.add("correct");
             }
