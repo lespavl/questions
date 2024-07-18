@@ -1,48 +1,57 @@
 document.addEventListener("DOMContentLoaded", () => {
     let questions = [];
 
-    function getRandomQuestions(questions, count) {
-        const shuffled = questions.sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, count);
-    }
+    const getRandomQuestions = (questions, count) => {
+        return questions.sort(() => 0.5 - Math.random()).slice(0, count);
+    };
 
-    function displayQuestions(questions) {
-        const container = document.getElementById("questions-container");
-        container.innerHTML = "";
-        questions.forEach((question, index) => {
-            const questionDiv = document.createElement("div");
-            questionDiv.className = "question";
+    const createQuestionElement = (question, index) => {
+        const questionDiv = document.createElement("div");
+        questionDiv.className = "question";
 
-            const questionNumber = document.createElement("p");
-            questionNumber.textContent = `Вопрос №${question.number}`;
-            questionDiv.appendChild(questionNumber);
+        const questionNumber = document.createElement("p");
+        questionNumber.textContent = `Вопрос №${question.number}`;
+        questionDiv.appendChild(questionNumber);
 
-            const questionText = document.createElement("p");
-            questionText.textContent = question.text;
-            questionDiv.appendChild(questionText);
+        const questionText = document.createElement("p");
+        questionText.textContent = question.text;
+        questionDiv.appendChild(questionText);
 
-            const answersForm = document.createElement("form");
-            answersForm.id = `answers-form-${index}`;
-            question.answers.forEach(answer => {
-                const label = document.createElement("label");
-                label.textContent = answer;
+        const answersForm = document.createElement("form");
+        answersForm.id = `answers-form-${index}`;
 
-                const radio = document.createElement("input");
-                radio.type = "radio";
-                radio.name = `answer-${index}`;
-                radio.value = answer;
+        question.answers.forEach(answer => {
+            const label = document.createElement("label");
+            label.textContent = answer;
 
-                label.prepend(radio);
-                answersForm.appendChild(label);
-                answersForm.appendChild(document.createElement("br"));
-            });
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = `answer-${index}`;
+            radio.value = answer;
 
-            questionDiv.appendChild(answersForm);
-            container.appendChild(questionDiv);
+            label.prepend(radio);
+            answersForm.appendChild(label);
+            answersForm.appendChild(document.createElement("br"));
         });
-    }
 
-    function checkAnswers() {
+        questionDiv.appendChild(answersForm);
+        return questionDiv;
+    };
+
+    const displayQuestions = (questions) => {
+        const container = document.getElementById("questions-container");
+        const fragment = document.createDocumentFragment();
+
+        questions.forEach((question, index) => {
+            const questionElement = createQuestionElement(question, index);
+            fragment.appendChild(questionElement);
+        });
+
+        container.innerHTML = "";
+        container.appendChild(fragment);
+    };
+
+    const checkAnswers = () => {
         let correctCount = 0;
         let incorrectCount = 0;
 
@@ -62,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             } else {
                 incorrectCount++;
-                questionDiv.classList.add("incorrect");
                 const correctAnswer = Array.from(questionDiv.querySelectorAll('input')).find(input => input.value === question.correct);
                 correctAnswer.parentElement.classList.add("correct");
             }
@@ -70,9 +78,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const result = document.getElementById("result");
         result.textContent = `Правильных ответов: ${correctCount}, Неправильных ответов: ${incorrectCount}`;
-    }
+    };
 
-    document.getElementById("check-button").addEventListener("click", checkAnswers);
+    document.getElementById("check-button").addEventListener("click", () => {
+        checkAnswers();
+    });
 
     fetch('questions.json')
         .then(response => response.json())
