@@ -3,55 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вопросы</title>
+    <title>Главная страница</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-        .question {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 15px;
-            background-color: #fff;
-            border-radius: 4px;
-        }
-        .question p {
-            margin: 5px 0;
-        }
-        .correct {
-            color: green;
-        }
-        .incorrect {
-            color: red;
-        }
-        #check-button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        #check-button:hover {
-            background-color: #0056b3;
-        }
-        #result {
-            font-size: 18px;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="questions-container" class="container"></div>
-<button id="check-button" class="btn btn-primary mt-3">Проверить</button>
-<p id="result"></p>
-<script src="script.js"></script>
+<div class="container">
+    <h1>Добро пожаловать!</h1>
+    <div class="block">
+        <h2>Загрузить 100 случайных вопросов</h2>
+        <a href="random.html">Перейти</a>
+    </div>
+    <div class="block">
+        <h2>Загрузить 100 последовательных вопросов</h2>
+        <a href="sequential.html">Перейти</a>
+    </div>
+</div>
 </body>
 </html>

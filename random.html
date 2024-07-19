@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Случайные вопросы</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <div id="questions-container"></div>
+    <button id="check-button" class="btn btn-primary mt-3">Проверить</button>
+    <p id="result"></p>
+</div>
+<script src="script.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        fetch('questions.json')
+            .then(response => response.json())
+            .then(data => {
+                questions = getRandomQuestions(data, 100);
+                displayQuestions(questions);
+            })
+            .catch(error => console.error('Ошибка загрузки вопросов:', error));
+    });
+</script>
+</body>
+</html>
