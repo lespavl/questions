@@ -86,30 +86,4 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("check-button").addEventListener("click", () => {
         checkAnswers();
     });
-
-    document.getElementById("load-random").addEventListener("click", () => {
-        fetch('questions.json')
-            .then(response => response.json())
-            .then(data => {
-                questions = getRandomQuestions(data, 100);
-                displayQuestions(questions);
-            })
-            .catch(error => console.error('Помилка завантаження запитань:', error));
-    });
-
-    document.getElementById("load-sequential").addEventListener("click", () => {
-        const startIndex = parseInt(document.getElementById("start-index").value);
-        if (isNaN(startIndex) || startIndex < 1 || startIndex > 2706) {
-            alert("Введіть коректне значення від 1 до 2706");
-            return;
-        }
-        fetch('questions.json')
-            .then(response => response.json())
-            .then(data => {
-                questions = getSequentialQuestions(data, startIndex, 100);
-                displayQuestions(questions);
-                document.getElementById("check-button").style.display = 'block';
-            })
-            .catch(error => console.error('Помилка завантаження запитань:', error));
-    });
 });
