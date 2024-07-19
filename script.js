@@ -1,16 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     let questions = [];
 
-    // Установка счетчика дней до 18 августа
-    const setCountdown = () => {
-        const targetDate = new Date('August 18, 2024');
-        const currentDate = new Date();
-        const timeDifference = targetDate - currentDate;
-        const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-        document.getElementById('days-counter').textContent = daysRemaining;
-    };
-    setCountdown();
-
     const getRandomQuestions = (questions, count) => {
         return questions.sort(() => 0.5 - Math.random()).slice(0, count);
     };
@@ -24,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         questionDiv.className = "question";
 
         const questionNumber = document.createElement("p");
-        questionNumber.textContent = `Вопрос №${question.number}`;
+        questionNumber.textContent = `Питання №${question.number}`;
         questionDiv.appendChild(questionNumber);
 
         const questionText = document.createElement("p");
@@ -90,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const result = document.getElementById("result");
-        result.textContent = `Правильных ответов: ${correctCount}, Неправильных ответов: ${incorrectCount}`;
+        result.textContent = `Правильних: ${correctCount}, Неправильних: ${incorrectCount}`;
     };
 
     document.getElementById("check-button").addEventListener("click", () => {
@@ -104,13 +94,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 questions = getRandomQuestions(data, 100);
                 displayQuestions(questions);
             })
-            .catch(error => console.error('Ошибка загрузки вопросов:', error));
+            .catch(error => console.error('Помилка завантаження запитань:', error));
     });
 
     document.getElementById("load-sequential").addEventListener("click", () => {
         const startIndex = parseInt(document.getElementById("start-index").value);
         if (isNaN(startIndex) || startIndex < 1 || startIndex > 2706) {
-            alert("Введите корректное значение от 1 до 2706");
+            alert("Введіть коректне значення від 1 до 2706");
             return;
         }
         fetch('questions.json')
@@ -118,7 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 questions = getSequentialQuestions(data, startIndex, 100);
                 displayQuestions(questions);
+                document.getElementById("check-button").style.display = 'block';
             })
-            .catch(error => console.error('Ошибка загрузки вопросов:', error));
+            .catch(error => console.error('Помилка завантаження запитань:', error));
     });
 });
