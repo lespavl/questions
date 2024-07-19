@@ -34,6 +34,7 @@ body {
 
 .question label {
     margin-bottom: 10px;
+    display: block;
 }
 
 .question input[type="radio"] {
