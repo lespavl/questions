@@ -4,8 +4,12 @@ const getRandomQuestions = (questions, count) => {
     return questions.sort(() => 0.5 - Math.random()).slice(0, count);
 };
 
-const getSequentialQuestions = (questions, start, count) => {
-    return questions.slice(start - 1, start - 1 + count);
+const getSequentialQuestions = (questions, startNumber, count) => {
+    // Фильтруем вопросы, у которых number >= startNumber
+    const filteredQuestions = questions.filter(q => q.number >= startNumber);
+
+    // Возвращаем первые `count` вопросов после фильтрации
+    return filteredQuestions.slice(0, count);
 };
 
 const createQuestionElement = (question, index) => {
