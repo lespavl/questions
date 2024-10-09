@@ -20,8 +20,8 @@
     document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("load-sequential").addEventListener("click", () => {
             const startIndex = parseInt(document.getElementById("start-index").value);
-            if (isNaN(startIndex) || startIndex < 1 || startIndex > 2706) {
-                alert("Введіть коректне значення від 1 до 2706");
+            if (isNaN(startIndex) || startIndex < 1 || startIndex > 11000) {
+                alert("Введіть коректне значення від 1 до 11000");
                 return;
             }
             fetch('questions.json')

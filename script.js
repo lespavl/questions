@@ -5,6 +5,9 @@ const getRandomQuestions = (questions, count) => {
 };
 
 const getSequentialQuestions = (questions, start, count) => {
+    if(start > 10000) {
+        start = 2805 + (start - 10000);
+    }
     return questions.slice(start - 1, start - 1 + count);
 };
 
